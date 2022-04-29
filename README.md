@@ -55,8 +55,6 @@ You can support me with some SOL : 5sC1ZeD21wbQyvL5wc7yL2wFntNdQWyKHg3AZaeXnkh7
 
     `seedPhrase` --> Your wallet passphrase (Careful do not share this key)
 
-    `password` --> Any password for setup wallet
-
 5. Open CMD and go to directory
 
     `cd /path/to/directory/Solana-mint`
