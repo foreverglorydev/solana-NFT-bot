@@ -31,14 +31,6 @@ def mint(values, isWindows):
             By.XPATH, "//button[contains(text(),'Phantom')]")
         phantom.click()
 
-        driver.maximize_window()
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[contains(text(),'Connect')]")))
-        connect = driver.find_element(
-            By.XPATH, "//button[contains(text(),'Connect')]")
-        connect.click()
-
-
         original_window = driver.current_window_handle
         WebDriverWait(driver, 60).until(EC.number_of_windows_to_be(2))
         for window_handle in driver.window_handles:
@@ -46,32 +38,22 @@ def mint(values, isWindows):
                 driver.switch_to.window(window_handle)
                 break
 
+        driver.maximize_window()
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Connect')]")))
-        popup_connect = driver.find_element(
+        connect = driver.find_element(
             By.XPATH, "//button[contains(text(),'Connect')]")
-        popup_connect.click()
+        connect.click()
+        
         driver.switch_to.window(main_window)
 
-        time.sleep(3)
+        time.sleep(5)
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'I understand')]")))
         agree = driver.find_element(
             By.XPATH, "//button[contains(text(),'I understand')]")
         agree.click()
         print("Status - Finished Selecting Wallet on ME")
-
-
-
-    def closePopup():
-        print("Status - Closing Popup")
-        WebDriverWait(driver, 60).until(EC.presence_of_element_located(
-            (By.XPATH, "//button[@class='wallet-adapter-modal-button-close']")))
-        closePopupButton = driver.find_element(
-            By.XPATH, "//button[@class='wallet-adapter-modal-button-close']")
-        closePopupButton.click()
-        print("Status - Finished Closing Popup")
-
 
     def avaitMint():
         print("Status - Waiting for Mint, maximum time wait is 24h, after that please restart bot")
@@ -117,9 +99,9 @@ def mint(values, isWindows):
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//input[@placeholder='Password']")))
         password1 = driver.find_element(
-            By.XPATH, "//input[@placeholder='Password']").send_keys(values[2])
+            By.XPATH, "//input[@placeholder='Password']").send_keys('1234567890')
         password2 = driver.find_element(
-            By.XPATH, "//input[@placeholder='Confirm Password']").send_keys(values[2])
+            By.XPATH, "//input[@placeholder='Confirm Password']").send_keys('1234567890')
         check_box = driver.find_element(
             By.XPATH, "//input[@type='checkbox']").click()
         submit = driver.find_element(
@@ -179,9 +161,6 @@ def mint(values, isWindows):
 
     # Actions - select wallet on magic eden
     selectWallet()
-
-    # Actions - close popup
-    closePopup()
 
     # Actions - MINTS WHEN TIMER IS UP
     avaitMint()
