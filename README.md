@@ -57,7 +57,7 @@ You can support me with some SOL : 5sC1ZeD21wbQyvL5wc7yL2wFntNdQWyKHg3AZaeXnkh7
 
 5. Open CMD and go to directory
 
-    `cd /path/to/directory/Solana-mint`
+    `cd /path to directory/Solana-mint`
 
 6. Run the python file
 
